@@ -7,10 +7,20 @@ import {
 } from 'react-native';
 import React from 'react';
 
-const Button = ({ onClick, label }) => {
+const Button = (props) => {
+  const stylesButton = [styles.button];
+  if (props.double) {
+    stylesButton.push(styles.buttonDouble);
+  }
+  if (props.triple) {
+    stylesButton.push(styles.buttonTriple);
+  }
+  if (props.operation) {
+    stylesButton.push(styles.operationButton);
+  }
   return (
-    <TouchableHighlight onPress={onClick}>
-      <Text style={styles.button}> {label} </Text>
+    <TouchableHighlight onPress={() => props.onClick(props.label)}>
+      <Text style={stylesButton}> {props.label} </Text>
     </TouchableHighlight>
   );
 };
@@ -27,5 +37,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderWidth: 1,
     borderColor: '#888',
+  },
+  operationButton: {
+    color: '#fff',
+    backgroundColor: '#fa8231',
+  },
+  buttonDouble: {
+    width: (Dimensions.get('window').width / 4) * 2,
+  },
+  buttonTriple: {
+    width: (Dimensions.get('window').width / 4) * 3,
   },
 });
