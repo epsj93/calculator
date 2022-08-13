@@ -5,10 +5,31 @@ import Display from './src/components/Display';
 
 const App = () => {
   const [displayValue, setDisplayValue] = useState('0');
+  const [clearDisplay, setClearDisplay] = useState(false);
+  const [operation, setOperation] = useState(null);
+  const [values, setValues] = useState([0, 0]);
+  const [current, setCurrent] = useState(0);
 
-  const addDigit = (n) => setDisplayValue(n);
-  const clearMemory = () => setDisplayValue('0');
-  const setOperation = () => {};
+  const addDigit = (n) => {
+    if (n === '.' && displayValue.includes('.')) {
+      return;
+    }
+    displayValue === '0' || clearDisplay
+      ? setDisplayValue('')
+      : setDisplayValue(displayValue);
+    setDisplayValue(displayValue + n);
+    setClearDisplay(false);
+
+    if (n !== '.') {
+      const newValue = parseFloat(displayValue);
+      setValues[current](newValue);
+      setDisplayValue({ values });
+    }
+  };
+  const clearMemory = () => {
+    setDisplayValue('0');
+  };
+  /* const setOperation = () => {}; */
 
   return (
     <View style={styles.container}>
