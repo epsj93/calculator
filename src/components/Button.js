@@ -3,11 +3,10 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View,
 } from 'react-native';
 import React from 'react';
 
-const Button = (props) => {
+export default props => {
   const stylesButton = [styles.button];
   if (props.double) {
     stylesButton.push(styles.buttonDouble);
@@ -25,7 +24,6 @@ const Button = (props) => {
   );
 };
 
-export default Button;
 
 const styles = StyleSheet.create({
   button: {

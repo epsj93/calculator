@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const Display = ({value}) => {
+export default (props) => {
   return (
     <View style={styles.display}>
-      <Text style={styles.displayValue} numberOfLines={1}>{value}</Text>
+      <Text style={styles.displayValue} numberOfLines={1}>
+        {props.value}
+      </Text>
     </View>
   );
 };
-
-export default Display;
 
 const styles = StyleSheet.create({
   display: {
